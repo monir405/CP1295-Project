@@ -5,7 +5,7 @@
 
 import { createNote } from './notes.js';
 import { saveNotes, exportNotesAsJson } from './storage.js';
-
+import { setupImageSupport } from './image.js';
 /**
  * Initialize UI event listeners
  * @param {NoteManager} noteManager - The note manager instance
@@ -166,6 +166,7 @@ export function setupNoteEventListeners(noteElement, note, noteManager) {
             noteElement.classList.remove('note-active');
         }
     });
+    setupImageSupport(noteElement, note);
 }
 
 /**

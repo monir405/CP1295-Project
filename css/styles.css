@@ -172,3 +172,44 @@ footer {
         min-height: 160px;
     }
 }
+
+.note-image-gallery {
+    display: flex;
+    flex-direction: column-reverse; /* Most recent on bottom */
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.image-wrapper {
+    position: relative;
+    border: 2px solid transparent;
+    padding: 2px;
+    border-radius: 4px;
+    overflow: hidden;
+    transition: border 0.2s;
+}
+
+.image-wrapper.selected {
+    border: 2px dashed #ff5e5e;
+}
+
+.note-image {
+    max-width: 100%;
+    max-height: 100px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.delete-image-btn {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    background: none;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 0.8rem;
+    padding: 2px 6px;
+    cursor: pointer;
+    display: none;
+}

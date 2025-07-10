@@ -4,6 +4,7 @@
  */
 
 // Array of note colors
+
 const NOTE_COLORS = ['note-yellow', 'note-blue', 'note-green', 'note-pink'];
 
 /**
@@ -19,13 +20,14 @@ export class Note {
      * @param {number} options.y - Y position on the board
      * @param {string} options.color - CSS class for note color
      */
-    constructor({ id = null, content = '', x = 0, y = 0, color = null }) {
+    constructor({ id = null, content = '', x = 0, y = 0, color = null, images = [] }) {
         this.id = id || this.generateId();
         this.content = content;
         this.x = x;
         this.y = y;
         this.color = color || this.getRandomColor();
         this.element = null;
+        this.images = images;
     }
 
     /**
@@ -106,7 +108,8 @@ export class Note {
             content: this.content,
             x: this.x,
             y: this.y,
-            color: this.color
+            color: this.color,
+            images: this.images || []
         };
     }
 
