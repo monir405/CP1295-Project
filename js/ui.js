@@ -6,6 +6,8 @@
 import { createNote } from './notes.js';
 import { saveNotes, exportNotesAsJson } from './storage.js';
 import { setupImageSupport } from './image.js';
+import { setupTimestamp } from './timestamp.js';
+
 /**
  * Initialize UI event listeners
  * @param {NoteManager} noteManager - The note manager instance
@@ -167,6 +169,8 @@ export function setupNoteEventListeners(noteElement, note, noteManager) {
         }
     });
     setupImageSupport(noteElement, note);
+    setupTimestamp(noteElement, note);
+
 }
 
 /**

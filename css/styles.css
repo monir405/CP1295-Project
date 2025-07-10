@@ -213,3 +213,13 @@ footer {
     cursor: pointer;
     display: none;
 }
+
+.note-timestamp {
+    font-size: 0.7rem;
+    color: #666;
+    margin-top: 2px;
+    margin-left: 6px;
+    font-style: italic;
+    font-weight: bold;
+}
+
