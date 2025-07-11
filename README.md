@@ -15,6 +15,9 @@ QuickNotes is a compact single-page web app that lets users create, move, edit, 
 - Automatic saving to localStorage
 - Fetch random productivity quotes via external API
 - Export notes as JSON file
+- Add multiple Images and delete them
+- Added time stamp (creation date)
+- Added sorting based on time stamp (ascending and descending)
 
 ## Technologies Used
 
@@ -33,6 +36,9 @@ QuickNotes is a compact single-page web app that lets users create, move, edit, 
 - `js/notes.js`: Note class definition and management
 - `js/ui.js`: UI-related functions and event handlers
 - `js/storage.js`: Functions for data persistence
+- `js/image.js` : Functions to add and delete image to notes
+- `js/timestamp.js` : Functions to add time stamp to notes
+- `js/sort.js` : Functions to sort the notes based on time stamp (ascending and descending)
 
 ## Getting Started
 
