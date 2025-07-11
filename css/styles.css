@@ -175,7 +175,7 @@ footer {
 
 .note-image-gallery {
     display: flex;
-    flex-direction: column-reverse; /* Most recent on bottom */
+    flex-direction: column-reverse; 
     gap: 0.5rem;
     margin-bottom: 0.5rem;
 }

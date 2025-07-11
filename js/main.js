@@ -4,8 +4,9 @@
  */
 
 import { Note, NoteManager } from './notes.js';
-import { initializeUI, renderAllNotes } from './ui.js';
+import { initializeUI, renderAllNotes  } from './ui.js';
 import { loadNotes, saveNotes } from './storage.js';
+import { setupSortButton, renderSortedNotes} from './sort.js';
 
 // Initialize the application when DOM is fully loaded
 document.addEventListener('DOMContentLoaded', () => {
@@ -34,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Initialize UI components and event handlers
     initializeUI(noteManager);
-    
+    setupSortButton(noteManager, (sorted) => renderSortedNotes(sorted, noteManager));
     // Save notes when page is unloaded
     window.addEventListener('beforeunload', () => {
         const notes = noteManager.toJSON();
