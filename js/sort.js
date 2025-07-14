@@ -1,51 +1,55 @@
 import { setupNoteEventListeners } from './ui.js';
-// Track the current sort order (ascending vs descending)
-let ascending = true;
+
 /**
- * Sets up the sort button functionality.
- * Toggles between ascending and descending sort by creation time when clicked.
+ * Setup separate ascending and descending sort buttons.
+ * Each button sorts notes by createdAt and renders the visual layout.
  * 
- * @param {NoteManager} noteManager - The manager containing all notes
+ * @param {NoteManager} noteManager - Note manager with all notes
  */
 export function setupSortButton(noteManager) {
-    const sortBtn = document.getElementById('sort-btn');
-    if (!sortBtn) return;
-    sortBtn.addEventListener('click', () => {
-        // Copy and sort notes based on creation date
-        const sorted = [...noteManager.getAllNotes()].sort((a, b) => {
-            const timeA = new Date(a.createdAt);
-            const timeB = new Date(b.createdAt);
-            return ascending ? timeA - timeB : timeB - timeA;
-        });
-        // Update button text and toggle sorting order
-        sortBtn.textContent = ascending ? 'Sort ↓' : 'Sort ↑';
-        ascending = !ascending;
-        // Render the sorted notes visually
+    const ascBtn = document.getElementById('asc-btn');
+    const descBtn = document.getElementById('desc-btn');
+
+    if (!ascBtn || !descBtn) return;
+
+    ascBtn.addEventListener('click', () => {
+        const sorted = [...noteManager.getAllNotes()].sort((a, b) =>
+            new Date(a.createdAt) - new Date(b.createdAt)
+        );
+        renderSortedNotes(sorted, noteManager);
+    });
+
+    descBtn.addEventListener('click', () => {
+        const sorted = [...noteManager.getAllNotes()].sort((a, b) =>
+            new Date(b.createdAt) - new Date(a.createdAt)
+        );
         renderSortedNotes(sorted, noteManager);
     });
 }
 
 /**
- * Renders notes in sorted order on the board without saving new positions.
- * This ensures sorting is non-destructive (doesn't affect permanent layout).
+ * Renders sorted notes without saving new positions (non-destructive).
  * 
- * @param {Note[]} sortedNotes - The notes sorted by date
- * @param {NoteManager} noteManager - Note manager instance for event handling
+ * @param {Note[]} sortedNotes - Sorted array of notes
+ * @param {NoteManager} noteManager - The note manager instance
  */
 export function renderSortedNotes(sortedNotes, noteManager) {
     const noteBoard = document.getElementById('note-board');
     if (!noteBoard) return;
+
     noteBoard.innerHTML = '';
-    let topOffset = 20; 
-    const leftOffset = 20; 
+
+    let topOffset = 20;
+    const leftOffset = 20;
+
     sortedNotes.forEach(note => {
         note.x = leftOffset;
         note.y = topOffset;
-        topOffset += 220; 
+        topOffset += 220;
+
         const noteElement = note.createElement();
-        note.updatePosition(note.x, note.y); 
+        note.updatePosition(note.x, note.y);
         setupNoteEventListeners(noteElement, note, noteManager);
         noteBoard.appendChild(noteElement);
     });
 }
-

@@ -41,7 +41,7 @@ header {
     gap: 1rem;
 }
 
-#export-btn {
+#export-btn, #asc-btn, #desc-btn {
     background-color: white;
     color: var(--primary-color);
     border: none;
